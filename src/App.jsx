@@ -1,21 +1,21 @@
-import Navbar   from './components/layout/Navbar'
-import Footer   from './components/layout/Footer'
-import Hero     from './components/sections/Hero'
-import Services from './components/sections/Services'
-import About    from './components/sections/About'
-import Portfolio from './components/sections/Portfolio'
-import Process  from './components/sections/Process'
-import Contact  from './components/sections/Contact'
+import Navbar       from './components/layout/Navbar'
+import Footer       from './components/layout/Footer'
+import Hero         from './components/sections/Hero'
+import Capabilities from './components/sections/Capabilities'
+import Services     from './components/sections/Services'
+import About        from './components/sections/About'
+import Process      from './components/sections/Process'
+import Contact      from './components/sections/Contact'
 
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-ink-900 text-ink-100 overflow-x-hidden">
       <Navbar />
-      <main className="pt-20">
+      <main>
         <Hero />
+        <Capabilities />
         <Services />
         <About />
-        <Portfolio />
         <Process />
         <Contact />
       </main>

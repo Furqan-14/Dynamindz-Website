@@ -8,20 +8,108 @@
   }
 
   body {
-    @apply font-sans text-gray-900 bg-white antialiased;
+    @apply font-sans text-ink-100 bg-ink-900 antialiased selection:bg-brand-500/30 selection:text-white;
+    /* a near-black gradient backdrop for atmospheric depth */
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(31,162,255,0.10), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 110%, rgba(31,162,255,0.05), transparent 70%);
+    background-attachment: fixed;
   }
 
   * {
     @apply box-border;
   }
+
+  ::-webkit-scrollbar       { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: #0A0E1A; }
+  ::-webkit-scrollbar-thumb { background: #1B2237; border-radius: 6px; }
+  ::-webkit-scrollbar-thumb:hover { background: #252D44; }
+
+  h1, h2, h3, h4 { letter-spacing: -0.025em; }
+  h1            { letter-spacing: -0.04em; }
 }
 
 @layer utilities {
-  .text-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent;
+  /* Layout primitives */
+  .section        { @apply relative py-28 px-4 sm:px-6 lg:px-8; }
+  .section-tight  { @apply relative py-20 px-4 sm:px-6 lg:px-8; }
+  .container-x    { @apply max-w-6xl mx-auto; }
+  .container-wide { @apply max-w-7xl mx-auto; }
+
+  /* The signature accent: italic serif slipped into a sans headline */
+  .accent {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: rgb(214 222 240);
   }
 
-  .section-padding {
-    @apply py-24 px-4 sm:px-6 lg:px-8;
+  .accent-brand {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    @apply text-brand-300;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-300 to-brand-500 bg-clip-text text-transparent;
+  }
+
+  /* Card primitive — calm by default */
+  .card {
+    @apply relative rounded-2xl bg-ink-850/60 border border-white/[0.06];
+    box-shadow:
+      0 1px 0 0 rgba(255,255,255,0.03) inset,
+      0 24px 48px -32px rgba(0,0,0,0.6);
+  }
+  .card-hover {
+    transition: border-color .35s ease, transform .35s ease, background-color .35s ease;
+  }
+  .card-hover:hover {
+    @apply border-white/[0.12] bg-ink-850/80;
+    transform: translateY(-2px);
+  }
+
+  /* Sparse animated grid */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  .bg-grid-fade {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+    mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+  }
+  .bg-grid-fade-bottom {
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 80%);
+    mask-image: linear-gradient(to bottom, black, transparent 80%);
+  }
+
+  /* Eyebrow — leading rule + small caps */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase tracking-[0.22em] text-brand-300 font-medium;
+    text-shadow: 0 0 24px rgba(31,162,255,0.35);
+  }
+  .eyebrow::before {
+    content: '';
+    @apply w-6 h-px bg-brand-400;
+  }
+
+  .hr-fade {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-white/[0.08] to-transparent;
+  }
+
+  /* Status pill (live indicator) */
+  .pill {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.03] text-xs text-ink-200 backdrop-blur-sm;
+  }
+
+  /* Marquee track */
+  .marquee {
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    mask-image:         linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
   }
 }

@@ -1,11 +1,7 @@
 /**
- * Reusable button/link component.
- * Props:
- *   variant  - 'primary' | 'outline' | 'ghost' (default 'primary')
- *   size     - 'sm' | 'md' | 'lg' (default 'md')
- *   href     - string (renders <a> if provided, else <button>)
- *   children - ReactNode
- *   className - string
+ * Button / link with dark-theme variants.
+ *   variant - 'primary' | 'outline' | 'ghost'
+ *   size    - 'sm' | 'md' | 'lg'
  */
 export default function Button({
   variant = 'primary',
@@ -16,18 +12,25 @@ export default function Button({
   ...rest
 }) {
   const base =
-    'inline-flex items-center gap-2 font-semibold rounded-xl transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 cursor-pointer'
+    'inline-flex items-center justify-center gap-2 font-medium rounded-lg ' +
+    'transition-colors duration-200 cursor-pointer focus:outline-none ' +
+    'focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 ' +
+    'focus-visible:ring-offset-ink-900 whitespace-nowrap'
 
   const variants = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-xl hover:-translate-y-0.5',
-    outline: 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50 hover:-translate-y-0.5',
-    ghost:   'text-gray-600 hover:text-blue-600 hover:bg-blue-50',
+    primary:
+      'text-white bg-brand-500 hover:bg-brand-400 ' +
+      'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_8px_24px_-12px_rgba(31,162,255,0.6)]',
+    outline:
+      'border border-white/15 text-white hover:bg-white/[0.04] hover:border-white/25',
+    ghost:
+      'text-ink-200 hover:text-white hover:bg-white/[0.04]',
   }
 
   const sizes = {
     sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg',
+    md: 'px-5 py-2.5 text-sm',
+    lg: 'px-6 py-3 text-base',
   }
 
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`

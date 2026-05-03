@@ -1,31 +1,31 @@
 import { useState } from 'react'
-import { Mail, Send, CheckCircle } from 'lucide-react'
+import { Mail, Send, CheckCircle, ArrowUpRight } from 'lucide-react'
 import AnimatedSection from '../ui/AnimatedSection'
 import SectionHeader from '../ui/SectionHeader'
 import Button from '../ui/Button'
+import Select from '../ui/Select'
 
 const contactInfo = [
   { icon: Mail, label: 'Email', value: 'info@dynamindz.com', href: 'mailto:info@dynamindz.com' },
 ]
 
-const budgetOptions = [
-  'Under $5,000',
-  '$5,000 – $15,000',
-  '$15,000 – $50,000',
-  '$50,000+',
+const interestOptions = [
+  'Infrastructure',
+  'R&D / AI',
+  'Technical training',
+  'Tendering / RFP',
+  'IT services',
   'Not sure yet',
 ]
 
 function SuccessMessage() {
   return (
-    <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-        <CheckCircle className="w-8 h-8 text-green-600" />
+    <div className="flex flex-col items-center justify-center py-16 text-center">
+      <div className="w-14 h-14 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-5">
+        <CheckCircle className="w-7 h-7 text-brand-300" />
       </div>
-      <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-      <p className="text-gray-500">
-        Thanks for reaching out. We'll get back to you within 24 hours.
-      </p>
+      <h3 className="font-display text-2xl font-semibold text-white mb-2">Message received.</h3>
+      <p className="text-ink-300">We&apos;ll respond within one business day.</p>
     </div>
   )
 }
@@ -35,179 +35,147 @@ export default function Contact() {
     name: '',
     email: '',
     company: '',
-    budget: '',
+    interest: '',
     message: '',
   })
   const [submitted, setSubmitted] = useState(false)
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: Connect to Formspree, EmailJS, or similar service
-    // e.g., fetch('https://formspree.io/f/YOUR_FORM_ID', { method: 'POST', body: JSON.stringify(formData) })
+    // TODO: wire to Formspree / EmailJS / API endpoint
     setSubmitted(true)
   }
 
+  const labelClass = 'block text-sm font-medium text-ink-200 mb-2'
+  const inputClass =
+    'w-full px-4 py-3 rounded-lg bg-ink-900 border border-white/[0.08] text-white placeholder-ink-500 ' +
+    'text-sm focus:outline-none focus:border-brand-400/60 focus:ring-2 focus:ring-brand-400/20 transition-all'
+
   return (
-    <section id="contact" className="bg-gray-900 section-padding">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+    <section id="contact" className="section overflow-hidden">
+      <div className="container-wide">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
           {/* Left — info */}
-          <AnimatedSection direction="left">
+          <AnimatedSection direction="left" className="lg:col-span-5">
             <SectionHeader
-              eyebrow="Get In Touch"
-              title="Let's Build Something Great Together"
-              subtitle="Whether you have a fully scoped project or just an idea on a napkin — we want to hear from you."
+              eyebrow="Get in touch"
+              title="Let's build something that lasts."
+              subtitle="Whether you have a fully scoped RFP or a hunch on a napkin — we'd like to hear about it."
               centered={false}
-              light={true}
+              marginBottom="mb-10"
             />
 
-            <div className="space-y-5 mb-10">
+            <div className="space-y-3 mb-6">
               {contactInfo.map((item) => (
-                <div key={item.label} className="flex items-center gap-4">
-                  <div className="w-11 h-11 bg-blue-600/20 border border-blue-600/30 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-blue-400" />
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.02] transition-all"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-300">
+                    <item.icon className="w-5 h-5" />
                   </div>
-                  <div>
-                    <p className="text-gray-500 text-xs uppercase tracking-wider">{item.label}</p>
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        className="text-white font-medium hover:text-blue-400 transition-colors"
-                      >
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-white font-medium">{item.value}</p>
-                    )}
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-ink-400">{item.label}</p>
+                    <p className="text-white">{item.value}</p>
                   </div>
-                </div>
+                  <ArrowUpRight className="w-4 h-4 text-ink-500 group-hover:text-brand-300 transition-colors" />
+                </a>
               ))}
             </div>
 
-            {/* Trust indicators */}
-            <div className="border border-gray-800 rounded-2xl p-6 space-y-3">
-              <h4 className="text-white font-semibold text-sm mb-4">Why teams choose Dynamindz</h4>
-              {[
-                'Fixed-price or time-and-materials — your choice',
-                'Weekly demos and progress updates',
-                'Full source code ownership, always',
-                'Post-launch support included',
-              ].map((point) => (
-                <div key={point} className="flex items-start gap-3">
-                  <span className="text-blue-400 mt-0.5 flex-shrink-0">✓</span>
-                  <span className="text-gray-400 text-sm">{point}</span>
-                </div>
-              ))}
+            <div className="rounded-xl border border-white/[0.06] p-6">
+              <h4 className="text-sm font-semibold text-white mb-4">
+                Why teams choose Dynamindz
+              </h4>
+              <ul className="space-y-2.5">
+                {[
+                  'Fixed-price or T&M — your choice',
+                  'Weekly demos and progress updates',
+                  'Full source-code ownership, always',
+                  'Post-launch support included',
+                ].map((point) => (
+                  <li key={point} className="flex items-start gap-2.5 text-sm text-ink-200">
+                    <span className="mt-2 w-1 h-1 rounded-full bg-brand-400 shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </AnimatedSection>
 
           {/* Right — form */}
-          <AnimatedSection direction="right">
-            <div className="bg-white rounded-2xl p-8 shadow-2xl">
+          <AnimatedSection direction="right" className="lg:col-span-7">
+            <div className="card p-7 sm:p-9">
               {submitted ? (
                 <SuccessMessage />
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Name */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="name">
-                        Full Name *
-                      </label>
+                      <label className={labelClass} htmlFor="name">Full name</label>
                       <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
+                        id="name" name="name" type="text" required
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="John Smith"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow"
+                        className={inputClass}
                       />
                     </div>
 
-                    {/* Email */}
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="email">
-                        Email Address *
-                      </label>
+                      <label className={labelClass} htmlFor="email">Email address</label>
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
+                        id="email" name="email" type="email" required
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="john@company.com"
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow"
+                        className={inputClass}
                       />
                     </div>
                   </div>
 
-                  {/* Company */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="company">
-                      Company / Project Name
-                      <span className="text-gray-400 font-normal ml-1">(optional)</span>
-                    </label>
+                    <label className={labelClass} htmlFor="company">Company / project</label>
                     <input
-                      id="company"
-                      name="company"
-                      type="text"
+                      id="company" name="company" type="text"
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Acme Corp"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow"
+                      className={inputClass}
                     />
                   </div>
 
-                  {/* Budget */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="budget">
-                      Estimated Budget
-                    </label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      value={formData.budget}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow bg-white"
-                    >
-                      <option value="">Select a range...</option>
-                      {budgetOptions.map((opt) => (
-                        <option key={opt} value={opt}>
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
+                    <label className={labelClass} htmlFor="interest">Area of interest</label>
+                    <Select
+                      id="interest"
+                      name="interest"
+                      value={formData.interest}
+                      onChange={(v) => setFormData((p) => ({ ...p, interest: v }))}
+                      options={interestOptions}
+                      placeholder="Select a discipline..."
+                    />
                   </div>
 
-                  {/* Message */}
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5" htmlFor="message">
-                      Tell Us About Your Project *
-                    </label>
+                    <label className={labelClass} htmlFor="message">Tell us about your project</label>
                     <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      required
+                      id="message" name="message" rows={5} required
                       value={formData.message}
                       onChange={handleChange}
-                      placeholder="Describe what you're looking to build, your timeline, and any relevant details..."
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-shadow resize-none"
+                      placeholder="What are you trying to build? Where are you stuck? Any deadlines?"
+                      className={`${inputClass} resize-none`}
                     />
                   </div>
 
-                  <Button type="submit" variant="primary" size="lg" className="w-full justify-center">
-                    Send Message
+                  <Button type="submit" variant="primary" size="lg" className="w-full">
+                    Send message
                     <Send className="w-4 h-4" />
                   </Button>
-
                 </form>
               )}
             </div>

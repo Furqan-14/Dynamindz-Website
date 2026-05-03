@@ -1,99 +1,82 @@
-import { motion } from 'framer-motion'
-import { ArrowRight, ChevronDown, Zap } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import AnimatedSection from '../ui/AnimatedSection'
 import Button from '../ui/Button'
 
+const disciplines = [
+  'Infrastructure',
+  'Research & Development',
+  'Technical Training',
+  'Tendering',
+  'IT Services',
+]
+
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-white">
-      {/* Animated background blobs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-[700px] h-[700px] bg-blue-200 rounded-full opacity-25 blur-[120px] animate-float" />
-        <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-blue-300 rounded-full opacity-20 blur-[100px] animate-float-delayed" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-blue-100 rounded-full opacity-30 blur-[80px] animate-float" />
+    <section className="relative min-h-screen flex flex-col overflow-hidden">
+      {/* Atmospheric backdrop — grid + two staggered brand glows */}
+      <div className="absolute inset-0 bg-grid bg-grid-fade pointer-events-none opacity-60" />
+      <div className="absolute -top-40 -right-40 w-[1000px] h-[1000px] rounded-full bg-brand-500/[0.14] blur-[180px] pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-[700px] h-[700px] rounded-full bg-brand-500/[0.08] blur-[160px] pointer-events-none" />
+
+      {/* Main content — asymmetric left-aligned, lots of negative space */}
+      <div className="relative z-10 flex-1 flex items-center container-wide pt-32 pb-12 px-4 sm:px-8 lg:px-12">
+        <div className="max-w-3xl">
+          <AnimatedSection delay={0}>
+            <p className="flex items-center gap-3 text-sm text-ink-300 mb-10">
+              <span className="w-8 h-px bg-brand-400" />
+              A technology company
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.05}>
+            <h1 className="font-display font-medium text-white leading-[0.95] tracking-[-0.045em] text-[3.5rem] sm:text-[5rem] md:text-[6rem] xl:text-[7rem]">
+              Design.
+              <br />
+              Build.
+              <br />
+              Operate.
+            </h1>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.1}>
+            <p className="mt-12 max-w-lg text-lg text-ink-200 leading-relaxed">
+              We work across infrastructure, applied research, training,
+              tendering, and IT services — and we stay around long enough
+              to be accountable for what we ship.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.15}>
+            <div className="mt-10 flex flex-col sm:flex-row gap-3">
+              <Button variant="primary" size="md" href="#capabilities">
+                See our capabilities
+                <ArrowRight className="w-4 h-4" />
+              </Button>
+              <Button variant="ghost" size="md" href="#contact">
+                Start a conversation
+              </Button>
+            </div>
+          </AnimatedSection>
+        </div>
       </div>
 
-      {/* Grid pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage:
-            'linear-gradient(#111827 1px, transparent 1px), linear-gradient(to right, #111827 1px, transparent 1px)',
-          backgroundSize: '60px 60px',
-        }}
-      />
-
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
-        {/* Eyebrow badge */}
-        <AnimatedSection delay={0}>
-          <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2 mb-8">
-            <Zap className="w-3.5 h-3.5 text-blue-600 fill-blue-600" />
-            <span className="text-xs font-semibold text-blue-700 uppercase tracking-widest">
-              Software · Products · Consulting
-            </span>
+      {/* Bottom — five disciplines, with a brand hairline accent */}
+      <AnimatedSection delay={0.25}>
+        <div className="relative z-10 border-t border-white/[0.08]">
+          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-400/60 to-transparent pointer-events-none" />
+          <div className="container-wide px-4 sm:px-8 lg:px-12 py-7">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-x-6 gap-y-5">
+              {disciplines.map((d, i) => (
+                <div key={d} className="flex items-baseline gap-3 group">
+                  <span className="text-sm font-medium text-brand-300 tabular-nums group-hover:text-brand-200 transition-colors">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-sm text-ink-100 group-hover:text-white transition-colors">{d}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </AnimatedSection>
-
-        {/* Headline */}
-        <AnimatedSection delay={0.1}>
-          <h1 className="text-6xl sm:text-7xl md:text-8xl font-black leading-[1.02] tracking-tight text-gray-900 mb-6">
-            We Build Software
-            <br />
-            <span className="text-gradient">That Works.</span>
-          </h1>
-        </AnimatedSection>
-
-        {/* Sub-headline */}
-        <AnimatedSection delay={0.2}>
-          <p className="text-xl md:text-2xl text-gray-500 max-w-2xl mx-auto leading-relaxed mb-10">
-            Dynamindz is a software company that ships custom applications, builds its own
-            products, and helps teams make the right technology decisions — fast.
-          </p>
-        </AnimatedSection>
-
-        {/* CTAs */}
-        <AnimatedSection delay={0.3}>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="primary" size="lg" href="#portfolio">
-              See Our Work
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-            <Button variant="outline" size="lg" href="#contact">
-              Start a Project
-            </Button>
-          </div>
-        </AnimatedSection>
-
-        {/* Stats row */}
-        <AnimatedSection delay={0.4}>
-          <div className="mt-16 flex flex-wrap justify-center gap-8 sm:gap-12">
-            {[
-              { value: '50+', label: 'Projects Delivered' },
-              { value: '3',   label: 'Own Products' },
-              { value: '100%', label: 'Client Retention' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl font-black text-gray-900">{stat.value}</div>
-                <div className="text-sm text-gray-500 mt-1">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </AnimatedSection>
-      </div>
-
-      {/* Scroll indicator */}
-      <AnimatedSection delay={0.6} className="absolute bottom-8 left-1/2 -translate-x-1/2">
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-          className="flex flex-col items-center gap-2 text-gray-400 cursor-pointer"
-          onClick={() =>
-            document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })
-          }
-        >
-          <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
-          <ChevronDown className="w-5 h-5" />
-        </motion.div>
+        </div>
       </AnimatedSection>
     </section>
   )

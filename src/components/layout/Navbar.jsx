@@ -1,22 +1,21 @@
 import { useState, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
-import LogoSrc from '../../assets/Logo.png'
-import Button from '../ui/Button'
+import LogoSrc from '../../assets/Logo-white.png'
 
 const navLinks = [
-  { label: 'Services',  href: '#services'  },
-  { label: 'About',     href: '#about'     },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Process',   href: '#process'   },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Services',     href: '#services'     },
+  { label: 'About',        href: '#about'        },
+  { label: 'Process',      href: '#process'      },
 ]
 
 export default function Navbar() {
-  const [scrolled, setScrolled]       = useState(false)
-  const [mobileOpen, setMobileOpen]   = useState(false)
+  const [scrolled, setScrolled]     = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -25,78 +24,84 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        scrolled ? 'py-3' : 'py-5'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#" className="flex items-center">
-          <img src={LogoSrc} alt="Dynamindz" className="h-8 w-auto" />
+      {/* Backdrop only when scrolled — fades a soft hairline below it */}
+      <div
+        aria-hidden="true"
+        className={`absolute inset-0 transition-opacity duration-300 ${
+          scrolled ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <div className="absolute inset-0 bg-ink-900/75 backdrop-blur-xl" />
+        <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-white/[0.08] to-transparent" />
+      </div>
+
+      <nav className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <a href="#" className="flex items-center group">
+          <img
+            src={LogoSrc}
+            alt="Dynamindz"
+            className="h-9 w-auto opacity-95 group-hover:opacity-100 transition-opacity"
+          />
         </a>
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200"
+              className="px-4 py-2 rounded-lg text-sm text-ink-200 hover:text-white transition-colors"
             >
               {link.label}
             </a>
           ))}
+          <a
+            href="#contact"
+            className="ml-2 px-4 py-2 rounded-lg text-sm text-ink-200 hover:text-white transition-colors"
+          >
+            Contact
+          </a>
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:block">
-          <Button variant="primary" size="sm" href="#contact">
-            Get In Touch
-          </Button>
-        </div>
-
-        {/* Mobile hamburger */}
         <button
           onClick={() => setMobileOpen((v) => !v)}
-          className="md:hidden p-2 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+          className="md:hidden p-2 -mr-2 rounded-lg text-ink-200 hover:text-white transition-colors"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </nav>
 
-      {/* Mobile dropdown menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="md:hidden overflow-hidden bg-white border-t border-gray-100 shadow-lg"
+            transition={{ duration: 0.22, ease: 'easeInOut' }}
+            className="md:hidden overflow-hidden bg-ink-900/95 backdrop-blur-xl"
           >
-            <div className="px-4 py-4 flex flex-col gap-1">
+            <div className="px-4 py-3 flex flex-col">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={closeMobile}
-                  className="px-4 py-3 rounded-xl text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors"
+                  className="px-4 py-3 rounded-lg text-sm text-ink-200 hover:text-white hover:bg-white/[0.04] transition-colors"
                 >
                   {link.label}
                 </a>
               ))}
-              <div className="pt-2 border-t border-gray-100 mt-2">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  href="#contact"
-                  className="w-full justify-center"
-                  onClick={closeMobile}
-                >
-                  Get In Touch
-                </Button>
-              </div>
+              <a
+                href="#contact"
+                onClick={closeMobile}
+                className="px-4 py-3 rounded-lg text-sm text-ink-200 hover:text-white hover:bg-white/[0.04] transition-colors"
+              >
+                Contact
+              </a>
             </div>
           </motion.div>
         )}

@@ -1,39 +1,27 @@
 /**
- * Consistent section header with eyebrow, title, and subtitle.
- * Props:
- *   eyebrow  - string (small uppercase label)
- *   title    - string (main heading)
- *   subtitle - string (optional)
- *   centered - boolean (default true)
- *   light    - boolean (default false) - white text for dark backgrounds
+ * Section header. The title supports a string OR JSX (so callers can mix
+ * sans + italic-serif spans for typographic accent — the design signature).
  */
 export default function SectionHeader({
   eyebrow,
   title,
   subtitle,
   centered = true,
-  light = false,
+  marginBottom = 'mb-20',
+  className = '',
 }) {
   return (
-    <div className={`mb-16 ${centered ? 'text-center' : ''}`}>
+    <div className={`${marginBottom} max-w-3xl ${centered ? 'mx-auto text-center' : ''} ${className}`}>
       {eyebrow && (
-        <span className="inline-block text-blue-600 font-semibold text-sm uppercase tracking-widest mb-3">
-          {eyebrow}
-        </span>
+        <div className={`mb-6 ${centered ? 'flex justify-center' : ''}`}>
+          <span className="eyebrow">{eyebrow}</span>
+        </div>
       )}
-      <h2
-        className={`text-4xl md:text-5xl font-bold leading-tight mb-4 ${
-          light ? 'text-white' : 'text-gray-900'
-        }`}
-      >
+      <h2 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] font-medium text-white leading-[1.05]">
         {title}
       </h2>
       {subtitle && (
-        <p
-          className={`text-lg max-w-2xl leading-relaxed ${
-            centered ? 'mx-auto' : ''
-          } ${light ? 'text-gray-400' : 'text-gray-500'}`}
-        >
+        <p className={`mt-6 text-lg text-ink-300 leading-relaxed max-w-xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}

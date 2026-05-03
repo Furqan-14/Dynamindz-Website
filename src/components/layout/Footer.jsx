@@ -1,132 +1,104 @@
 import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
-import LogoSrc from '../../assets/Logo.png'
+import LogoSrc from '../../assets/Logo-white.png'
 
-const serviceLinks = [
-  'Custom Software Development',
-  'Product Development',
-  'IT Consulting',
-  'Mobile Development',
-  'Cloud & DevOps',
-  'Security & Compliance',
+const capabilityLinks = [
+  { label: 'Infrastructure',     href: '#capabilities' },
+  { label: 'R&D',                href: '#capabilities' },
+  { label: 'Technical training', href: '#capabilities' },
+  { label: 'Tendering',          href: '#capabilities' },
+  { label: 'IT services',        href: '#capabilities' },
 ]
 
 const companyLinks = [
-  { label: 'About',     href: '#about'     },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Process',   href: '#process'   },
-  { label: 'Team',      href: '#team'      },
-  { label: 'Contact',   href: '#contact'   },
+  { label: 'Capabilities', href: '#capabilities' },
+  { label: 'Services',     href: '#services'     },
+  { label: 'About',        href: '#about'        },
+  { label: 'Process',      href: '#process'      },
+  { label: 'Contact',      href: '#contact'      },
+]
+
+const socials = [
+  { icon: Github,   href: '#',                          label: 'GitHub'   },
+  { icon: Linkedin, href: '#',                          label: 'LinkedIn' },
+  { icon: Twitter,  href: '#',                          label: 'Twitter'  },
+  { icon: Mail,     href: 'mailto:info@dynamindz.com',  label: 'Email'    },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand column */}
-          <div className="lg:col-span-1">
-            <img
-              src={LogoSrc}
-              alt="Dynamindz"
-              className="h-8 w-auto invert opacity-90 mb-4"
-            />
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Building software that matters. Custom development, product innovation, and
-              IT consulting for teams that need it done right.
+    <footer className="relative border-t border-white/[0.06] bg-ink-950">
+      <div className="container-wide px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-5">
+            <img src={LogoSrc} alt="Dynamindz" className="h-7 w-auto mb-5 opacity-95" />
+            <p className="text-ink-300 text-sm leading-relaxed mb-6 max-w-md">
+              A technology company designed for long horizons. Infrastructure, R&amp;D,
+              technical training, tendering, and IT services — built to last.
             </p>
-            <div className="flex gap-4">
-              <a
-                href="#"
-                className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-200"
-                aria-label="GitHub"
-              >
-                <Github className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-200"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a
-                href="mailto:info@dynamindz.com"
-                className="w-9 h-9 rounded-lg bg-gray-800 hover:bg-blue-600 flex items-center justify-center transition-colors duration-200"
-                aria-label="Email"
-              >
-                <Mail className="w-4 h-4" />
-              </a>
+            <div className="flex gap-2">
+              {socials.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="w-9 h-9 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-ink-300 hover:text-white hover:border-white/20 transition-colors"
+                >
+                  <s.icon className="w-4 h-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Services column */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-gray-400 mb-4">
-              Services
+          <div className="lg:col-span-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-4">
+              Capabilities
             </h3>
             <ul className="space-y-3">
-              {serviceLinks.map((service) => (
-                <li key={service}>
-                  <a
-                    href="#services"
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {service}
+              {capabilityLinks.map((l) => (
+                <li key={l.label}>
+                  <a href={l.href} className="text-sm text-ink-200 hover:text-white transition-colors">
+                    {l.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company column */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-gray-400 mb-4">
+          <div className="lg:col-span-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-4">
               Company
             </h3>
             <ul className="space-y-3">
-              {companyLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
+              {companyLinks.map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="text-sm text-ink-200 hover:text-white transition-colors">
+                    {l.label}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contact column */}
-          <div>
-            <h3 className="font-semibold text-sm uppercase tracking-widest text-gray-400 mb-4">
+          <div className="lg:col-span-2">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-4">
               Contact
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 text-sm">
               <li>
                 <a
                   href="mailto:info@dynamindz.com"
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                  className="text-ink-200 hover:text-white transition-colors"
                 >
                   info@dynamindz.com
                 </a>
               </li>
-              <li className="text-sm text-gray-400">Remote · Available Worldwide</li>
-              <li className="text-sm text-gray-400">Response within 24 hours</li>
+              <li className="text-ink-400">Response within 24h</li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex items-center justify-center">
-          <p className="text-sm text-gray-500">
+        <div className="mt-14 pt-6 border-t border-white/[0.06]">
+          <p className="text-xs text-ink-500">
             © {new Date().getFullYear()} Dynamindz. All rights reserved.
           </p>
         </div>
