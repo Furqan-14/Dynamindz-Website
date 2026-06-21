@@ -2,7 +2,7 @@
   "name": "dynamindz-website",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://Furqan-14.github.io/Dynamindz-Website",
+  "homepage": "https://dynamindz.com",
   "type": "module",
   "scripts": {
     "dev": "vite",

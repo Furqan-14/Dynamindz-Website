@@ -1,12 +1,11 @@
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react'
+import { Linkedin } from 'lucide-react'
 import LogoSrc from '../../assets/Logo-white.png'
 
 const capabilityLinks = [
-  { label: 'Infrastructure',     href: '#capabilities' },
-  { label: 'R&D',                href: '#capabilities' },
-  { label: 'Technical training', href: '#capabilities' },
-  { label: 'Tendering',          href: '#capabilities' },
-  { label: 'IT services',        href: '#capabilities' },
+  { label: 'IT services',          href: '#capabilities' },
+  { label: 'Resource augmentation', href: '#capabilities' },
+  { label: 'IT R&D',               href: '#capabilities' },
+  { label: 'Tendering',            href: '#capabilities' },
 ]
 
 const companyLinks = [
@@ -18,10 +17,11 @@ const companyLinks = [
 ]
 
 const socials = [
-  { icon: Github,   href: '#',                          label: 'GitHub'   },
-  { icon: Linkedin, href: '#',                          label: 'LinkedIn' },
-  { icon: Twitter,  href: '#',                          label: 'Twitter'  },
-  { icon: Mail,     href: 'mailto:info@dynamindz.com',  label: 'Email'    },
+  {
+    icon: Linkedin,
+    href: 'https://www.linkedin.com/company/dynamindztechnologies/',
+    label: 'LinkedIn',
+  },
 ]
 
 export default function Footer() {
@@ -32,14 +32,16 @@ export default function Footer() {
           <div className="lg:col-span-5">
             <img src={LogoSrc} alt="Dynamindz" className="h-7 w-auto mb-5 opacity-95" />
             <p className="text-ink-300 text-sm leading-relaxed mb-6 max-w-md">
-              A technology company designed for long horizons. Infrastructure, R&amp;D,
-              technical training, tendering, and IT services — built to last.
+              A technology company designed for long horizons. IT services,
+              resource augmentation, R&amp;D, and tendering — built to last.
             </p>
             <div className="flex gap-2">
               {socials.map((s) => (
                 <a
                   key={s.label}
                   href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-9 h-9 rounded-lg border border-white/10 bg-white/[0.02] flex items-center justify-center text-ink-300 hover:text-white hover:border-white/20 transition-colors"
                 >
@@ -92,7 +94,6 @@ export default function Footer() {
                   info@dynamindz.com
                 </a>
               </li>
-              <li className="text-ink-400">Response within 24h</li>
             </ul>
           </div>
         </div>

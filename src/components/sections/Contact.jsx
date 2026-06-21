@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Mail, Send, CheckCircle, ArrowUpRight } from 'lucide-react'
+import { Mail, Send, CheckCircle, ArrowUpRight, Check } from 'lucide-react'
 import AnimatedSection from '../ui/AnimatedSection'
 import SectionHeader from '../ui/SectionHeader'
 import Button from '../ui/Button'
@@ -10,22 +10,21 @@ const contactInfo = [
 ]
 
 const interestOptions = [
-  'Infrastructure',
-  'R&D / AI',
-  'Technical training',
-  'Tendering / RFP',
-  'IT services',
+  'IT Services',
+  'Resource Augmentation',
+  'IT Research & Development',
+  'Tendering',
   'Not sure yet',
 ]
 
 function SuccessMessage() {
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <div className="w-14 h-14 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center mb-5">
-        <CheckCircle className="w-7 h-7 text-brand-300" />
+      <div className="w-14 h-14 rounded-full bg-brand-50 border border-brand-200 flex items-center justify-center mb-5">
+        <CheckCircle className="w-7 h-7 text-brand-600" />
       </div>
-      <h3 className="font-display text-2xl font-semibold text-white mb-2">Message received.</h3>
-      <p className="text-ink-300">We&apos;ll respond within one business day.</p>
+      <h3 className="font-display text-2xl font-semibold text-ink-900 mb-2">Message received.</h3>
+      <p className="text-ink-600">We&apos;ll respond within one business day.</p>
     </div>
   )
 }
@@ -49,15 +48,15 @@ export default function Contact() {
     setSubmitted(true)
   }
 
-  const labelClass = 'block text-sm font-medium text-ink-200 mb-2'
+  const labelClass = 'block text-sm font-medium text-ink-700 mb-2'
   const inputClass =
-    'w-full px-4 py-3 rounded-lg bg-ink-900 border border-white/[0.08] text-white placeholder-ink-500 ' +
-    'text-sm focus:outline-none focus:border-brand-400/60 focus:ring-2 focus:ring-brand-400/20 transition-all'
+    'w-full px-4 py-3 rounded-lg bg-white border border-ink-200 text-ink-900 placeholder-ink-400 ' +
+    'text-sm focus:outline-none focus:border-brand-500/60 focus:ring-2 focus:ring-brand-500/20 transition-all'
 
   return (
     <section id="contact" className="section overflow-hidden">
       <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 lg:items-center">
           {/* Left — info */}
           <AnimatedSection direction="left" className="lg:col-span-5">
             <SectionHeader
@@ -73,33 +72,35 @@ export default function Contact() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] hover:border-white/[0.14] hover:bg-white/[0.02] transition-all"
+                  className="group flex items-center gap-4 p-4 rounded-xl border border-ink-200 bg-white hover:border-ink-300 hover:shadow-sm transition-all"
                 >
-                  <div className="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-brand-300">
+                  <div className="w-10 h-10 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600">
                     <item.icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs text-ink-400">{item.label}</p>
-                    <p className="text-white">{item.value}</p>
+                    <p className="text-xs text-ink-500">{item.label}</p>
+                    <p className="text-ink-900">{item.value}</p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-ink-500 group-hover:text-brand-300 transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-ink-400 group-hover:text-brand-600 transition-colors" />
                 </a>
               ))}
             </div>
 
-            <div className="rounded-xl border border-white/[0.06] p-6">
-              <h4 className="text-sm font-semibold text-white mb-4">
+            <div className="rounded-2xl border border-ink-200 bg-white p-6 shadow-sm">
+              <h4 className="text-sm font-semibold text-ink-900 mb-5">
                 Why teams choose Dynamindz
               </h4>
-              <ul className="space-y-2.5">
+              <ul className="space-y-3.5">
                 {[
                   'Fixed-price or T&M — your choice',
                   'Weekly demos and progress updates',
                   'Full source-code ownership, always',
                   'Post-launch support included',
                 ].map((point) => (
-                  <li key={point} className="flex items-start gap-2.5 text-sm text-ink-200">
-                    <span className="mt-2 w-1 h-1 rounded-full bg-brand-400 shrink-0" />
+                  <li key={point} className="flex items-center gap-3 text-sm text-ink-700">
+                    <span className="w-5 h-5 rounded-full bg-brand-100 flex items-center justify-center shrink-0">
+                      <Check className="w-3 h-3 text-brand-600" strokeWidth={2.5} />
+                    </span>
                     <span>{point}</span>
                   </li>
                 ))}
@@ -121,7 +122,7 @@ export default function Contact() {
                         id="name" name="name" type="text" required
                         value={formData.name}
                         onChange={handleChange}
-                        placeholder="John Smith"
+                        placeholder="Your full name"
                         className={inputClass}
                       />
                     </div>
@@ -132,7 +133,7 @@ export default function Contact() {
                         id="email" name="email" type="email" required
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="john@company.com"
+                        placeholder="you@company.com"
                         className={inputClass}
                       />
                     </div>

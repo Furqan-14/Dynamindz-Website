@@ -1,75 +1,14 @@
 import {
-  Server,
-  FlaskConical,
-  GraduationCap,
-  FileSignature,
   Cpu,
+  Users,
+  FlaskConical,
+  FileSignature,
 } from 'lucide-react'
 
 export const capabilities = [
   {
-    id: 'infrastructure',
-    number: '01',
-    icon: Server,
-    title: 'Infrastructure',
-    tagline: 'Built to run, hardened to last.',
-    description:
-      'We establish, maintain and operate data centers, cloud hosting facilities and communication networks — the unseen backbone every modern business depends on.',
-    bullets: [
-      'Data center planning & operation',
-      'Multi-region cloud hosting',
-      'Communication networks & edge',
-      '24/7 monitoring & SLAs',
-    ],
-  },
-  {
-    id: 'rnd',
-    number: '02',
-    icon: FlaskConical,
-    title: 'Research & Development',
-    tagline: 'Where tomorrow gets prototyped.',
-    description:
-      'We invest in research and development across new software, AI models, hardware components and cybersecurity protocols — turning ideas into shippable products.',
-    bullets: [
-      'Applied AI & ML models',
-      'Hardware & embedded systems',
-      'Cybersecurity protocols',
-      'Software platform R&D',
-    ],
-  },
-  {
-    id: 'training',
-    number: '03',
-    icon: GraduationCap,
-    title: 'Technical Training',
-    tagline: 'Skill transfer, not knowledge hoarding.',
-    description:
-      'We provide training, consultancy and technical support services to clients and employees on the use of modern software and hardware — so teams own their stack.',
-    bullets: [
-      'Hands-on workshops',
-      'Custom curriculum design',
-      'Technical consultancy',
-      'Long-term support contracts',
-    ],
-  },
-  {
-    id: 'tendering',
-    number: '04',
-    icon: FileSignature,
-    title: 'Tendering',
-    tagline: 'Public sector ready, audit-trail clean.',
-    description:
-      'We apply for, secure and execute contracts and sub-contracts from government bodies, municipalities and private entities — with the documentation and discipline expected at that level.',
-    bullets: [
-      'Government bids & RFPs',
-      'Municipal contracts',
-      'Private sector partnerships',
-      'Sub-contracting & delivery',
-    ],
-  },
-  {
     id: 'it-services',
-    number: '05',
+    number: '01',
     icon: Cpu,
     title: 'IT Services',
     tagline: 'Custom software, end-to-end.',
@@ -80,6 +19,51 @@ export const capabilities = [
       'System integration',
       'Cloud computing & DevOps',
       'Cybersecurity & data',
+    ],
+  },
+  {
+    id: 'resource-augmentation',
+    number: '02',
+    icon: Users,
+    title: 'Resource Augmentation',
+    tagline: 'Your team, scaled on demand.',
+    description:
+      'We embed skilled IT professionals — developers, infrastructure engineers, QA specialists, project managers and analysts — directly into client teams, scaling capacity up or down without the overhead of permanent hiring.',
+    bullets: [
+      'Software development & QA talent',
+      'Infrastructure & DevOps engineers',
+      'Project managers & business analysts',
+      'Short-term & long-term placements',
+    ],
+  },
+  {
+    id: 'rnd',
+    number: '03',
+    icon: FlaskConical,
+    title: 'IT Research & Development',
+    tagline: 'Where tomorrow gets prototyped.',
+    description:
+      'We invest in research and development across software platforms, AI models and cybersecurity protocols — turning ideas into shippable, production-grade products.',
+    bullets: [
+      'Applied AI & ML models',
+      'Cybersecurity protocols',
+      'Software platform R&D',
+      'Proof-of-concept & prototyping',
+    ],
+  },
+  {
+    id: 'tendering',
+    number: '04',
+    icon: FileSignature,
+    title: 'Tendering',
+    tagline: 'Public sector ready, audit-trail clean.',
+    description:
+      'We apply for, secure and execute IT contracts and sub-contracts for government bodies, municipalities and private entities — with the documentation and delivery discipline expected at that level.',
+    bullets: [
+      'Government IT bids & RFPs',
+      'Municipal & PSU IT contracts',
+      'Private sector partnerships',
+      'Sub-contracting & delivery',
     ],
   },
 ]

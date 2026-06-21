@@ -9,15 +9,22 @@ import Contact      from './components/sections/Contact'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-ink-900 text-ink-100 overflow-x-hidden">
+    <div className="min-h-screen bg-white text-ink-700 overflow-x-hidden">
       <Navbar />
       <main>
+        {/* Section rhythm: white / tint band alternating */}
         <Hero />
-        <Capabilities />
+        <div className="band">
+          <Capabilities />
+        </div>
         <Services />
-        <About />
+        <div className="band">
+          <About />
+        </div>
         <Process />
-        <Contact />
+        <div className="band">
+          <Contact />
+        </div>
       </main>
       <Footer />
     </div>

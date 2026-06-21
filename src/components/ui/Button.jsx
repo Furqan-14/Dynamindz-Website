@@ -14,17 +14,17 @@ export default function Button({
   const base =
     'inline-flex items-center justify-center gap-2 font-medium rounded-lg ' +
     'transition-colors duration-200 cursor-pointer focus:outline-none ' +
-    'focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 ' +
-    'focus-visible:ring-offset-ink-900 whitespace-nowrap'
+    'focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 ' +
+    'focus-visible:ring-offset-white whitespace-nowrap'
 
   const variants = {
     primary:
-      'text-white bg-brand-500 hover:bg-brand-400 ' +
-      'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_8px_24px_-12px_rgba(31,162,255,0.6)]',
+      'text-white bg-brand-500 hover:bg-brand-600 ' +
+      'shadow-[inset_0_1px_0_0_rgba(255,255,255,0.18),0_8px_24px_-12px_rgba(31,162,255,0.5)]',
     outline:
-      'border border-white/15 text-white hover:bg-white/[0.04] hover:border-white/25',
+      'border border-ink-200 text-ink-800 hover:bg-ink-50 hover:border-ink-300',
     ghost:
-      'text-ink-200 hover:text-white hover:bg-white/[0.04]',
+      'text-ink-600 hover:text-ink-900 hover:bg-ink-50',
   }
 
   const sizes = {

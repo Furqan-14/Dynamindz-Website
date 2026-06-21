@@ -29,7 +29,7 @@ export default function About() {
   return (
     <section id="about" className="section overflow-hidden">
       <div className="container-wide">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-20 lg:items-center">
           {/* Left — headline + body */}
           <AnimatedSection direction="left" className="lg:col-span-5">
             <SectionHeader
@@ -38,11 +38,11 @@ export default function About() {
               centered={false}
               marginBottom="mb-8"
             />
-            <p className="text-ink-300 text-lg leading-relaxed mb-5">
+            <p className="text-ink-600 text-lg leading-relaxed mb-5">
               The businesses that win the next decade will be the ones that
               treat technology as core infrastructure — not as a line item.
             </p>
-            <p className="text-ink-300 text-lg leading-relaxed">
+            <p className="text-ink-600 text-lg leading-relaxed">
               So we work the way infrastructure has to work: plan deliberately,
               build durably, document everything, and stay around long enough to
               be accountable for what we ship.
@@ -51,17 +51,17 @@ export default function About() {
 
           {/* Right — values */}
           <AnimatedSection direction="right" className="lg:col-span-7">
-            <div className="grid sm:grid-cols-2 gap-px bg-white/[0.06] rounded-2xl overflow-hidden border border-white/[0.06]">
+            <div className="grid sm:grid-cols-2 gap-px bg-ink-200/70 rounded-2xl overflow-hidden border border-ink-200/70">
               {values.map((v) => (
-                <div key={v.title} className="group relative bg-ink-900 p-7 overflow-hidden">
-                  <span className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-400/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="w-11 h-11 rounded-lg bg-brand-500/15 border border-brand-500/30 flex items-center justify-center text-brand-200 mb-4 group-hover:bg-brand-500/25 group-hover:border-brand-500/40 transition-colors">
+                <div key={v.title} className="group relative bg-white p-7 overflow-hidden">
+                  <span className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-brand-500/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="w-11 h-11 rounded-lg bg-brand-100 border border-brand-200 flex items-center justify-center text-brand-600 mb-4 group-hover:bg-brand-500 group-hover:border-brand-500 group-hover:text-white transition-colors">
                     <v.icon className="w-5 h-5" strokeWidth={1.6} />
                   </div>
-                  <h4 className="font-display text-lg font-semibold text-white mb-1.5">
+                  <h4 className="font-display text-lg font-semibold text-ink-900 mb-1.5">
                     {v.title}
                   </h4>
-                  <p className="text-ink-300 text-sm leading-relaxed">{v.desc}</p>
+                  <p className="text-ink-600 text-sm leading-relaxed">{v.desc}</p>
                 </div>
               ))}
             </div>

@@ -17,11 +17,11 @@ export default function SectionHeader({
           <span className="eyebrow">{eyebrow}</span>
         </div>
       )}
-      <h2 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] font-medium text-white leading-[1.05]">
+      <h2 className="font-display text-4xl sm:text-5xl md:text-[3.5rem] font-medium text-ink-900 leading-[1.05]">
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-6 text-lg text-ink-300 leading-relaxed max-w-xl ${centered ? 'mx-auto' : ''}`}>
+        <p className={`mt-6 text-lg text-ink-500 leading-relaxed max-w-xl ${centered ? 'mx-auto' : ''}`}>
           {subtitle}
         </p>
       )}

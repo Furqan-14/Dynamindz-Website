@@ -1,11 +1,7 @@
-/**
- * Pill badge — calm, sentence-case label.
- *   variant - 'brand' | 'ink'
- */
 export default function Badge({ children, variant = 'brand', className = '' }) {
   const variants = {
-    brand: 'bg-brand-500/10 text-brand-200 border-brand-500/20',
-    ink:   'bg-white/[0.04] text-ink-200 border-white/[0.08]',
+    brand: 'bg-brand-50 text-brand-700 border-brand-200',
+    ink:   'bg-ink-50 text-ink-600 border-ink-200',
   }
   return (
     <span

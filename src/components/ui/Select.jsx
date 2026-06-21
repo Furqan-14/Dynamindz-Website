@@ -44,12 +44,12 @@ export default function Select({
         aria-haspopup="listbox"
         aria-expanded={open}
         className={`w-full flex items-center justify-between gap-3 px-4 py-3 rounded-lg
-          bg-ink-900 border text-left text-sm transition-all
+          bg-white border text-left text-sm transition-all
           ${open
-            ? 'border-brand-400/60 ring-2 ring-brand-400/20 text-white'
-            : 'border-white/[0.08] text-white hover:border-white/[0.16]'}`}
+            ? 'border-brand-500/60 ring-2 ring-brand-500/20 text-ink-900'
+            : 'border-ink-200 text-ink-900 hover:border-ink-300'}`}
       >
-        <span className={value ? 'text-white' : 'text-ink-500'}>
+        <span className={value ? 'text-ink-900' : 'text-ink-400'}>
           {value || placeholder}
         </span>
         <ChevronDown
@@ -65,7 +65,7 @@ export default function Select({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.12, ease: 'easeOut' }}
-            className="absolute left-0 right-0 z-30 mt-1 max-h-72 overflow-auto rounded-lg border border-white/[0.08] bg-ink-850/95 backdrop-blur-xl shadow-xl shadow-black/40 py-1"
+            className="absolute left-0 right-0 z-30 mt-1 max-h-72 overflow-auto rounded-lg border border-ink-200 bg-white shadow-xl shadow-ink-900/10 py-1"
           >
             {options.map((opt) => {
               const selected = opt === value
@@ -82,11 +82,11 @@ export default function Select({
                     className={`w-full flex items-center justify-between gap-3 px-4 py-2.5 text-left text-sm
                       transition-colors
                       ${selected
-                        ? 'text-white bg-brand-500/10'
-                        : 'text-ink-200 hover:text-white hover:bg-white/[0.04]'}`}
+                        ? 'text-brand-700 bg-brand-50'
+                        : 'text-ink-600 hover:text-ink-900 hover:bg-ink-50'}`}
                   >
                     <span>{opt}</span>
-                    {selected && <Check className="w-4 h-4 text-brand-300" />}
+                    {selected && <Check className="w-4 h-4 text-brand-600" />}
                   </button>
                 </li>
               )
