@@ -20,7 +20,16 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  const closeMobile = () => setMobileOpen(false)
+  const handleMobileNavClick = (e, href) => {
+    e.preventDefault()
+    setMobileOpen(false)
+    const target = document.querySelector(href)
+    if (target) {
+      window.setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth' })
+      }, 240)
+    }
+  }
 
   return (
     <header
@@ -89,7 +98,7 @@ export default function Navbar() {
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={closeMobile}
+                  onClick={(e) => handleMobileNavClick(e, link.href)}
                   className="px-4 py-3 rounded-lg text-sm text-ink-600 hover:text-ink-900 hover:bg-ink-50 transition-colors"
                 >
                   {link.label}
@@ -97,7 +106,7 @@ export default function Navbar() {
               ))}
               <a
                 href="#contact"
-                onClick={closeMobile}
+                onClick={(e) => handleMobileNavClick(e, '#contact')}
                 className="px-4 py-3 rounded-lg text-sm text-ink-600 hover:text-ink-900 hover:bg-ink-50 transition-colors"
               >
                 Contact

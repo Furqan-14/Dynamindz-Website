@@ -28,8 +28,8 @@
 }
 
 @layer utilities {
-  .section        { @apply relative py-28 px-4 sm:px-6 lg:px-8; }
-  .section-tight  { @apply relative py-20 px-4 sm:px-6 lg:px-8; }
+  .section        { @apply relative py-28 px-4 sm:px-6 lg:px-8 scroll-mt-24; }
+  .section-tight  { @apply relative py-20 px-4 sm:px-6 lg:px-8 scroll-mt-24; }
   .container-x    { @apply max-w-6xl mx-auto; }
   .container-wide { @apply max-w-7xl mx-auto; }
 
